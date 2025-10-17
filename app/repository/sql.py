@@ -122,7 +122,7 @@ class SQLAlchemyUserRepository(UserRepository):
             logger.debug(f"Verificando existencia de email: {email}")
             
             # Ejecutar SELECT COUNT(*)
-            stmt = self.users.select().with_only_columns([func.count()]).where(self.users.c.email == email)
+            stmt = self.users.select().with_only_columns(func.count()).where(self.users.c.email == email)
             result = self.connection.execute(stmt)
             count = result.scalar()
             
